@@ -30,7 +30,7 @@ jobs:
       - setup_remote_docker
       - add_ssh_keys:
           fingerprints:
-            - "b4:b1:a9:41:0e:db:b3:a8:25:ec:bd:98:fa:f7:ee:b7"
+            - "2f:37:66:17:11:ae:f9:0f:9e:52:98:41:fe:d0:0c:78"
       - run:
           name: Set up a local Solr with build's solr config.
           command: bash .circleci/setup_solr.sh
@@ -46,7 +46,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "b4:b1:a9:41:0e:db:b3:a8:25:ec:bd:98:fa:f7:ee:b7"
+            - "2f:37:66:17:11:ae:f9:0f:9e:52:98:41:fe:d0:0c:78"
       - run:
           name: Build configuration asset
           command: bash .circleci/build.sh
