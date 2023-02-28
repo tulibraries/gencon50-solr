@@ -39,7 +39,7 @@ $ curl -X POST --header "Content-Type:application/octet-stream" --data-binary @g
 4. create a new SolrCloud Collection using that ConfigSet (change the solr url to whichever solr you're developing against)
 
 ```
-$ curl "http://localhost:8090/solr/admin/collections?action=CREATE&name=gencon50-1&numShards=1&replicationFactor=2&maxShardsPerNode=1&collection.configName=gencon50"
+$ curl "http://localhost:8090/solr/admin/collections?action=CREATE&name=gencon50-1&numShards=1&replicationFactor=4&maxShardsPerNode=1&collection.configName=gencon50"
 ```
 
 5. create a new SolrCloud Alias pointing to that Collection (if you want to use an Alias; and change the solr url to whatever solr you're developing against):

@@ -28,7 +28,7 @@ echo
 echo "***"
 echo "* Creating new gencon50-$CIRCLE_TAG collection"
 echo "***"
-RESP=$(curl -u $SOLR_USER:$SOLR_PASSWORD -i -o - --silent -X GET --header 'Accept: application/json' "https://solrcloud.tul-infra.page/solr/admin/collections?action=CREATE&name=gencon50-$CIRCLE_TAG&numShards=1&replicationFactor=2&maxShardsPerNode=1&collection.configName=gencon50-$CIRCLE_TAG")
+RESP=$(curl -u $SOLR_USER:$SOLR_PASSWORD -i -o - --silent -X GET --header 'Accept: application/json' "https://solrcloud.tul-infra.page/solr/admin/collections?action=CREATE&name=gencon50-$CIRCLE_TAG&numShards=1&replicationFactor=4&maxShardsPerNode=1&collection.configName=gencon50-$CIRCLE_TAG")
 validate_status
 echo
 echo "***"
