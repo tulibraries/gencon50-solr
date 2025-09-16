@@ -1,0 +1,28 @@
+name: Lint and Test
+
+on:
+  push:
+    branches-ignore:
+      - main
+  workflow_dispatch: {}
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Install jq
+        uses: dcarbone/install-jq-action@v2.1.0
+
+      - name: Set up local Solr with build's solr config
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: bash .github/scripts/setup_solr.sh
+
+      - name: Test Solr collection accessibility
+        run: bash .github/scripts/test.sh
