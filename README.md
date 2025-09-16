@@ -2,7 +2,7 @@
 
 These are the Solr configuration files for the Gencon50 (Best 50 Years in Gaming) content search & faceting Solr collection.
 # TUL COB Catalog Solr Configurations
-[![CircleCI](https://circleci.com/gh/tulibraries/gencon50-solr.svg?style=svg)](https://circleci.com/gh/tulibraries/gencon50-solr)
+[![Lint and Test](https://github.com/tulibraries/gencon50-solr/actions/workflows/lint-test.yml/badge.svg)](https://github.com/tulibraries/gencon50-solr/actions/workflows/lint-test.yml)
 
 These are the Solr configuration files for the TUL Cob (LibrarySearch) Alma catalog content search & faceting Solr collection.
 
