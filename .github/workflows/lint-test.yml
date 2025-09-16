@@ -2,9 +2,8 @@ name: Lint and Test
 
 on:
   push:
-    branches-ignore:
-      - main
-  workflow_dispatch: {}
+    tags:
+      - "v*.."
 
 jobs:
   test:
