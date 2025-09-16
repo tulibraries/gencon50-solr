@@ -22,24 +22,24 @@ echo
 echo "***"
 echo "* Sending gencon50-$RELEASE_TAG configs to SolrCloud."
 echo "***"
-RESP=$(curl -u $SOLR_USER:$SOLR_PASSWORD -i -o - --silent -X POST --header "Content-Type:application/octet-stream" --data-binary @$HOME/solrconfig.zip "https://solrcloud-rocky8.tul-infra.page/solr/admin/configs?action=UPLOAD&name=gencon50-$RELEASE_TAG")
+RESP=$(curl -u $SOLR_USER:$SOLR_PASSWORD -i -o - --silent -X POST --header "Content-Type:application/octet-stream" --data-binary @$HOME/solrconfig.zip "https://solrcloud-rocky9.tul-infra.page/solr/admin/configs?action=UPLOAD&name=gencon50-$RELEASE_TAG")
 validate_status
 echo
 echo "***"
 echo "* Creating new gencon50-$RELEASE_TAG collection"
 echo "***"
-RESP=$(curl -u $SOLR_USER:$SOLR_PASSWORD -i -o - --silent -X GET --header 'Accept: application/json' "https://solrcloud-rocky8.tul-infra.page/solr/admin/collections?action=CREATE&name=gencon50-$RELEASE_TAG&numShards=1&replicationFactor=4&maxShardsPerNode=1&collection.configName=gencon50-$RELEASE_TAG")
+RESP=$(curl -u $SOLR_USER:$SOLR_PASSWORD -i -o - --silent -X GET --header 'Accept: application/json' "https://solrcloud-rocky9.tul-infra.page/solr/admin/collections?action=CREATE&name=gencon50-$RELEASE_TAG&numShards=1&replicationFactor=4&maxShardsPerNode=1&collection.configName=gencon50-$RELEASE_TAG")
 validate_status
 echo
 echo "***"
 echo "* Creating qa alias based on configset name."
 echo "***"
-RESP=$(curl -u $SOLR_USER:$SOLR_PASSWORD -i -o - --silent -X POST --header "Content-Type:application/octet-stream" "https://solrcloud-rocky8.tul-infra.page/solr/admin/collections?action=CREATEALIAS&name=gencon50-$RELEASE_TAG-qa&collections=gencon50-$RELEASE_TAG")
+RESP=$(curl -u $SOLR_USER:$SOLR_PASSWORD -i -o - --silent -X POST --header "Content-Type:application/octet-stream" "https://solrcloud-rocky9.tul-infra.page/solr/admin/collections?action=CREATEALIAS&name=gencon50-$RELEASE_TAG-qa&collections=gencon50-$RELEASE_TAG")
 validate_status
 echo "***"
 echo "* Creating prod alias based on configset name."
 echo "***"
-RESP=$(curl -u $SOLR_USER:$SOLR_PASSWORD -i -o - --silent -X POST --header "Content-Type:application/octet-stream" "https://solrcloud-rocky8.tul-infra.page/solr/admin/collections?action=CREATEALIAS&name=gencon50-$RELEASE_TAG-prod&collections=gencon50-$RELEASE_TAG")
+RESP=$(curl -u $SOLR_USER:$SOLR_PASSWORD -i -o - --silent -X POST --header "Content-Type:application/octet-stream" "https://solrcloud-rocky9.tul-infra.page/solr/admin/collections?action=CREATEALIAS&name=gencon50-$RELEASE_TAG-prod&collections=gencon50-$RELEASE_TAG")
 validate_status
 echo "***"
 echo "* Pushing zip file asset to GitHub release."
