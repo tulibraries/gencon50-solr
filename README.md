@@ -2,13 +2,13 @@
 
 These are the Solr configuration files for the Gencon50 (Best 50 Years in Gaming) content search & faceting Solr collection.
 # TUL COB Catalog Solr Configurations
-[![CircleCI](https://circleci.com/gh/tulibraries/gencon50-solr.svg?style=svg)](https://circleci.com/gh/tulibraries/gencon50-solr)
+[![Lint and Test](https://github.com/tulibraries/gencon50-solr/actions/workflows/lint-test.yml/badge.svg)](https://github.com/tulibraries/gencon50-solr/actions/workflows/lint-test.yml)
 
 These are the Solr configuration files for the TUL Cob (LibrarySearch) Alma catalog content search & faceting Solr collection.
 
 ## Prerequisites
 
-- These configurations are built for Solr 8.1
+- These configurations are built for Solr 9
 - The instructions below presume a SolrCloud multi-node setup (using an external Zookeeper)
 
 ## Local Testing / Development
@@ -55,10 +55,10 @@ All PRs merged into the `main` branch are _not_ deployed anywhere. Only releases
 ### Production
 
 Once the main branch has been adequately tested and reviewed, a release is cut. Upon creating the release tag (generally just an integer), the following occurs:
-1. new ConfigSet of `gencon50-{release-tag}` is created in [Production SolrCloud](https://solrcloud.tul-infra.page);
-2. new Collection of `gencon50-{release-tag}-init` is created in [Production SolrCloud](https://solrcloud.tul-infra.page) w/the requisite ConfigSet (this Collection is largely ignored);
-3. a new QA alias of `gencon50-{release-tag}-qa` is created in [Production SolrCloud](https://solrcloud.tul-infra.page), pointing to the init Collection;
-3. a new Production alias of `gencon50-{release-tag}-prod` is created in [Production SolrCloud](https://solrcloud.tul-infra.page), pointing to the init Collection;
+1. new ConfigSet of `gencon50-{release-tag}` is created in [Production SolrCloud](https://solrcloud-rocky9.tul-infra.page);
+2. new Collection of `gencon50-{release-tag}-init` is created in [Production SolrCloud](https://solrcloud-rocky9.tul-infra.page) w/the requisite ConfigSet (this Collection is largely ignored);
+3. a new QA alias of `gencon50-{release-tag}-qa` is created in [Production SolrCloud](https://solrcloud-rocky9.tul-infra.page), pointing to the init Collection;
+3. a new Production alias of `gencon50-{release-tag}-prod` is created in [Production SolrCloud](https://solrcloud-rocky9.tul-infra.page), pointing to the init Collection;
 4. and, manually, a full reindex DAG is kicked off from Airflow Production to this new gencon50 alias. Upon completion of the reindex, relevant clients are redeployed pointing at their new alias, and *then QA & UAT review occur*.
 
 See the process outlined here: https://github.com/tulibraries/grittyOps/blob/main/services/solrcloud.md

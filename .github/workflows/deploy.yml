@@ -1,0 +1,33 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+      - "v*.*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    env:
+      SOLR_USER: ${{ secrets.SOLR_USER }}
+      SOLR_PASSWORD: ${{ secrets.SOLR_PASSWORD }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      RELEASE_TAG: ${{ github.ref_name }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install jq
+        uses: dcarbone/install-jq-action@v2.1.0
+
+      - name: Build configuration asset
+        run: bash .github/scripts/build.sh
+
+      - name: Deploy configuration asset to SolrCloud
+        run: bash .github/scripts/deploy.sh
