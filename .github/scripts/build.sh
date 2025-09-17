@@ -3,4 +3,4 @@ set -e
 cd $GITHUB_WORKSPACE
 zip -r $HOME/solrconfig.zip . -x ".git*" \
   Gemfile Gemfile.lock "spec/*" "vendor/*" \
-  Makefile ".circle*" ".github/*" "bin/*" LICENSE "README*" \
+  Makefile ".github/*" "bin/*" LICENSE "README*" \
