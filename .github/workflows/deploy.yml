@@ -8,23 +8,26 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    needs: test
     env:
       SOLR_USER: ${{ secrets.SOLR_USER }}
       SOLR_PASSWORD: ${{ secrets.SOLR_PASSWORD }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       RELEASE_TAG: ${{ github.ref_name }}
+    strategy:
+      matrix:
+        python-version: [ "3.12" ]
+
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
-          python-version: "3.12"
+          python-version: ${{ matrix.python-version }}
 
       - name: Install jq
-        uses: dcarbone/install-jq-action@v2.1.0
+        uses: dcarbone/install-jq-action@v3.2.0
 
       - name: Build configuration asset
         run: bash .github/scripts/build.sh
